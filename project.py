@@ -11,7 +11,7 @@ from torch.autograd import Variable
 from Architecture.dcgan import Generator
 from Architecture.dcgan import Discriminator
 from Architecture.dcgan import weights_init as weights_init
-from Cepa.aug import Data_Augmentation
+from Dataset.aug import Data_Augmentation
 
 print(torch.__version__)
 
