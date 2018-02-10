@@ -17,13 +17,7 @@ print(torch.__version__)
 
 batchSize = 64 
 imageSize = 64 
-randomCroppedSize = 60
-centerCroppedSize = 54
 
-transform_part_one = transforms.Compose([transforms.Scale((imageSize,imageSize)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),]) # We create a list of transformations (scaling, tensor conversion, normalization) to apply to the input images.
-transform_part_two = transforms.Compose([transforms.RandomCrop((randomCroppedSize,randomCroppedSize),padding=0),transforms.Scale((imageSize,imageSize)),transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-transform_part_three = transforms.Compose([transforms.CenterCrop((centerCroppedSize,centerCroppedSize)),transforms.Scale((imageSize,imageSize)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-transform_part_four = transforms.Compose([transforms.Pad(padding = 1,fill=0),transforms.Scale((imageSize,imageSize)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 #----------STEP 1---------------------
 #       LOADING DATASET
 #-------------------------------------
