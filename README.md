@@ -25,7 +25,7 @@ Results are not as satisfying as we were expecting. We are still experimenting. 
 
 ## Authors
 
-* **Stefan Radonjić & Marko Juric** 
+* **Stefan Radonjić** Data Science enthusiast 
 
 ## Acknowledgment
 - GANs, original paper by Ian J. Goodfellow: https://arxiv.org/abs/1406.2661
