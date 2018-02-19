@@ -11,21 +11,35 @@ from torch.autograd import Variable
 from Architecture.dcgan import Generator
 from Architecture.dcgan import Discriminator
 from Architecture.dcgan import weights_init as weights_init
-from Dataset.aug import Data_Augmentation
+from Augmentation.aug import Data_Augmentation
+
+import matplotlib.pyplot as plt
 
 print(torch.__version__)
 
 batchSize = 64 
 imageSize = 64 
-
 #----------STEP 1---------------------
 #       LOADING DATASET
 #-------------------------------------
-d_aug_obj = Data_Augmentation(imageSize,'./dbz_dataset')
-augmented_dataset = d_aug_obj.data_augmentation()
+transformation_list = []
+
+
+transform_part_one = transforms.Compose([transforms.Scale((imageSize,imageSize)), transforms.ToTensor(),
+                                                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),]) 
+transform_part_two = transforms.Compose([transforms.Pad(padding = 1,fill=0),transforms.Scale((imageSize,imageSize)),
+                                                  transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    
+transformation_list.append(transform_part_one)
+transformation_list.append(transform_part_two)
+         
+
+augmentation = Data_Augmentation(imageSize,'./dbz_dataset',transformation_list)
+augmented_dataset= augmentation.data_augmentation()
+
 
 print('Dataset length : {}'.format(len(augmented_dataset)))
-
+#dataset =dset.CIFAR10(root='./data',download=True,transform = transform)
 dataloader = torch.utils.data.DataLoader(augmented_dataset, batch_size = batchSize, shuffle = True, num_workers = 2) # We use dataLoader to get the images of the training set batch by batch.
 
 #-----------STEP 2a)------------------
